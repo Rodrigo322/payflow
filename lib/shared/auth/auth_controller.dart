@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:payflow/modules/home/home_page.dart';
-import 'package:payflow/modules/login/login_page.dart';
 
 class AuthController {
   var _isAuthenticated = false;
@@ -12,10 +10,12 @@ class AuthController {
     if (user != null) {
       _user = user;
       _isAuthenticated = true;
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
+      //navega para tela home_page
+      Navigator.pushReplacementNamed(context, "/home");
     } else {
+      //navega para tela login_page
       _isAuthenticated = false;
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+      Navigator.pushReplacementNamed(context, "/login");
     }
   }
 }
