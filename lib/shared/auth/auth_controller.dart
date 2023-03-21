@@ -9,6 +9,7 @@ class AuthController {
 
   void setUser(BuildContext context, UserModel? user) {
     if (user != null) {
+      saveUser(user);
       _user = user;
       //navega para tela home_page
       Navigator.pushReplacementNamed(context, "/home");
@@ -27,12 +28,12 @@ class AuthController {
   Future<void> currentUser(BuildContext context) async {
     final instance = await SharedPreferences.getInstance();
     await Future.delayed(Duration(seconds: 2));
-    if(instance.containsKey("user")) {
+    if (instance.containsKey("user")) {
       final user = instance.get("user");
       setUser(context, UserModel.fromJson(user));
       return;
     } else {
-      setUser(context,null);
+      setUser(context, null);
     }
   }
 }
